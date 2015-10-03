@@ -1,1 +1,3 @@
 git/gitconfig.symlink
+vim.symlink/backups
+vim.symlink/.netrwhist
