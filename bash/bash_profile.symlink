@@ -1,0 +1,9 @@
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+#export PATH=/usr/local/bin:$PATH
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+#export PATH=~/develop/pebble-dev/PebbleSDK-3.0-dp5/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+alias ls='ls -A'
+
+eval "$(rbenv init -)"

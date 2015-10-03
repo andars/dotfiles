@@ -1,0 +1,128 @@
+let g:pathogen_disabled = ['tslime.vim']
+call pathogen#infect()
+
+
+set encoding=utf-8
+
+set nowrap        " don't wrap lines
+
+set cc=80
+
+set expandtab
+set tabstop=4     " a tab is four spaces
+set softtabstop=4 
+set shiftwidth=4  " number of spaces to use for autoindenting
+
+set backspace=indent,eol,start  " allow backspacing over everything in insert mode
+set smartindent    " always set autoindenting on
+"set copyindent    " copy the previous indentation on autoindenting
+set number        " always show line numbers
+set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+set showmatch     " set show matching parenthesis
+
+set ignorecase smartcase    " search is case-sensitive only when it contains uppercase
+
+"set smarttab      " insert tabs on the start of a line according to
+                  "    shiftwidth, not tabstop
+
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+
+set title                " change the terminal's title
+set visualbell           " don't beep
+set noerrorbells         " don't beep
+
+set nobackup
+set nowritebackup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+set autoread
+
+syntax enable
+set t_Co=256
+filetype on
+filetype plugin on
+filetype indent on
+set background=light
+
+set cursorline
+
+nnoremap <C-c> <silent> <C-c> "I know how to exit vim, thanks
+
+"autocmd BufEnter,FileType *
+"\   if &ft ==# 'c' || &ft ==# 'cpp' || &ft ==# 'java' | colorscheme |
+"\   else | colorscheme default |
+"\   endif
+
+"au BufRead,BufNewFile *.md setlocal textwidth=80
+colorscheme solarized
+let g:solarized_termtrans = 1
+
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufRead *.txt set filetype=text
+autocmd BufReadPost *.rkt set filetype=scheme
+
+augroup filetypes
+    autocmd!
+    autocmd BufRead,BufNewFile *.md setlocal ft=markdown
+    autocmd BufRead,BufNewFile *.rkt setlocal ft=scheme
+    autocmd BufRead,BufNewFile *.txt setlocal ft=text 
+    
+    autocmd FileType ruby,html set ai sw=2 sts=2 et
+augroup END
+
+
+
+let g:pencil#wrapModeDefault = 'soft'
+let g:pencil#autoformat = 0
+augroup pencil
+    autocmd!
+    autocmd FileType markdown call pencil#init()
+    autocmd FileType text,txt call pencil#init()
+augroup END
+
+
+if has('persistent_undo')
+    silent !mkdir ~/.vim/backups > /dev/null 2>&1
+    set undodir=~/.vim/backups
+    set undofile
+endif
+
+autocmd Filetype java setlocal omnifunc=javacomplete#Complete 
+
+inoremap <buffer> <C-X><C-U> <C-X><C-U><C-P> 
+inoremap <buffer> <C-S-Space> <C-X><C-U><C-P> 
+
+
+let maplocalleader = "\\"
+
+
+"tslime
+let g:tslime_ensure_trailing_newlines = 1
+let g:tslime_normal_mapping = '<localleader>t'
+let g:tslime_visual_mapping = '<localleader>t'
+let g:tslime_vars_mapping = '<localleader>T'
+
+"vim-slime
+let g:slime_target = "tmux"
+
+
+set list
+set listchars=tab:»·
+
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+
+set wildmode=longest,list
+set wildmenu
+
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>

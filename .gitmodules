@@ -1,0 +1,12 @@
+[submodule "vim.symlink/bundle/vim-slime"]
+	path = vim.symlink/bundle/vim-slime
+	url = git://github.com/jpalardy/vim-slime.git
+[submodule "vim.symlink/bundle/vim-colors-solarized"]
+	path = vim.symlink/bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vim.symlink/bundle/vim-markdown"]
+	path = vim.symlink/bundle/vim-markdown
+	url = https://github.com/tpope/vim-markdown.git
+[submodule "vim.symlink/bundle/rust.vim"]
+	path = vim.symlink/bundle/rust.vim
+	url = https://github.com/wting/rust.vim
