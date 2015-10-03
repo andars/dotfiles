@@ -1,1 +1,12 @@
-/Users/andrew/Documents/dotfiles/git/gitconfig.symlink
+[user]
+	name = AUTHORNAME
+	email = AUTHOREMAIL
+[push]
+	default = simple
+[credential]
+	helper = GIT_CREDENTIAL_HELPER
+[alias]
+	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(black)%s%C(reset) %C(black)- %an%C(reset)%C(bold yellow)%d%C(reset)' 
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = !"git lg1"
+	l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
