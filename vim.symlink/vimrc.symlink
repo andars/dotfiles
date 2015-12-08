@@ -72,6 +72,7 @@ augroup filetypes
     autocmd BufRead,BufNewFile *.txt setlocal ft=text 
     
     autocmd FileType ruby,html set ai sw=2 sts=2 et
+    autocmd FileType ocaml set sw=2 sts=2 et
 augroup END
 
 
@@ -111,7 +112,8 @@ let g:slime_target = "tmux"
 
 
 set list
-set listchars=tab:»·
+set listchars=tab:»\ "<- There's a space there
+hi SpecialKey ctermbg=white
 
 set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
